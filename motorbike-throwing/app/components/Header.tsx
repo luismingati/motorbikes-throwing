@@ -1,6 +1,5 @@
 import React from 'react';
 import Image from 'next/image';
-import { Roboto } from 'next/font/google'
 
 const Header: React.FC = () => {
   return (
