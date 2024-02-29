@@ -2,7 +2,7 @@ import React from 'react';
 
 const Card: React.FC = () => {
   return (
-    <div className='flex flex-col gap-5 items-center lg:flex-row lg:items-stretch lg:justify-center xl:gap-10 px-4'>
+    <div className='flex flex-col gap-5 items-center lg:flex-row lg:items-stretch lg:justify-center xl:gap-10 px-4 mb-12'>
     <div className='w-full max-w-96 shadow-md bg-slate-50 text-black p-3 rounded-lg'>
       <div className='flex content-between items-center mb-4 gap-4'>
         <p className='text-2xl '>Equipada com a mais sofisticada tecnologia!</p>
