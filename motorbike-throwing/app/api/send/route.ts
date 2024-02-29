@@ -18,7 +18,7 @@ export default async function POST(req: NextApiRequest, res: NextApiResponse) {
     });
 
     res.status(200).json(data);
-  } catch (error) {
-    res.status(500).json({ error });
+  } catch (error: any) {
+    res.status(500).json({ error: error.message });
   }
 }
