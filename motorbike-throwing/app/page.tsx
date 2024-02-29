@@ -1,36 +1,31 @@
 import Card from "./components/Card"
-import { Roboto } from 'next/font/google'
+import { Montserrat } from 'next/font/google'
+import Header from "./components/Header"
+import Hero from "./components/Hero"
 
-const inter = Roboto({
+const inter = Montserrat({
   weight: '400',
   subsets: ['latin'],
 })
 
 const Home = () => {
   return (
-    <main className={inter.className}>
-      <div className="flex h-screen flex-col">
-        <header className="flex bg-white p-6 text-black">
-          <p>HEADER</p>
-        </header>
+    <div className="flex h-screen flex-col">
+      <header>
+        <Header/>
+      </header>
 
-        <main className="flex flex-1 flex-col p-6 text-white">
-          <p>
-            A espera acabou, a campeã de vendas vai voltar e agora você está ainda
-            mais perto de conquistar a sua.
-          </p>
+      <main className="flex flex-1 flex-col">
+        <Hero/>
+        <div className="mb-7"></div>
+        <Card />
+      </main>
 
-          <div>DESCRIÇÃO + cards</div>
-          <Card />
-          <div>FORMS </div>
+      <footer className="flex flex-col bg-white p-6 text-black">
+        <p>Desenvolvido por: </p>
+      </footer>
+    </div>
 
-        </main>
-
-        <footer className="flex flex-col bg-white p-6 text-black">
-          <p>Desenvolvido por: </p>
-        </footer>
-      </div>
-    </main>
   );
 }
 
