@@ -1,29 +1,29 @@
-import Image from "next/image"
+import Card from "./components/Card"
 
-export default function Home() {
+const Home = () => {
   return (
-    <div className="h-screen flex flex-col">
-
+    <div className="flex h-screen flex-col">
       <header className="flex bg-white p-6 text-black">
         <p>HEADER</p>
-        <Image 
-        />
       </header>
 
-      <main className="flex flex-col flex-1 p-6">
-        <p>A espera acabou, a campeã de vendas vai voltar e agora você está ainda mais perto de conquistar a sua.</p>
-        IMAGEM
-        <div>
-          DESCRIÇÃO + cards
-        </div>
-        <div>
-          FORMS
-        </div>
+      <main className="flex flex-1 flex-col p-6">
+        <p>
+          A espera acabou, a campeã de vendas vai voltar e agora você está ainda
+          mais perto de conquistar a sua.
+        </p>
+
+        <div>DESCRIÇÃO + cards</div>
+        <Card />
+        <div>FORMS </div>
+
       </main>
 
-      <footer className="flex flex-col bg-white text-black p-6">
+      <footer className="flex flex-col bg-white p-6 text-black">
         <p>Desenvolvido por: </p>
       </footer>
     </div>
   );
 }
+
+export default Home
