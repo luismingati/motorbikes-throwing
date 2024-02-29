@@ -2,6 +2,7 @@ import Card from "./components/Card"
 import { Montserrat } from 'next/font/google'
 import Header from "./components/Header"
 import Hero from "./components/Hero"
+import Footer from "./components/Footer"
 
 const inter = Montserrat({
   weight: '400',
@@ -21,8 +22,8 @@ const Home = () => {
         <Card />
       </main>
 
-      <footer className="flex flex-col bg-white p-6 text-black">
-        <p>Desenvolvido por: </p>
+      <footer>
+        <Footer/>
       </footer>
     </div>
 
