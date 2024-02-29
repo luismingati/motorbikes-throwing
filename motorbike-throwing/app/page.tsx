@@ -1,17 +1,16 @@
 import Card from "./components/Card"
+import Header from "./components/Header"
+import Hero from "./components/Hero"
 
 const Home = () => {
   return (
     <div className="flex h-screen flex-col">
-      <header className="flex bg-white p-6 text-black">
-        <p>HEADER</p>
+      <header>
+        <Header/>
       </header>
 
-      <main className="flex flex-1 flex-col p-6">
-        <p>
-          A espera acabou, a campeã de vendas vai voltar e agora você está ainda
-          mais perto de conquistar a sua.
-        </p>
+      <main className="flex flex-1 flex-col">
+        <Hero/>
 
         <div>DESCRIÇÃO + cards</div>
         <Card />
