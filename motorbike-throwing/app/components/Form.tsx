@@ -2,14 +2,15 @@
 import React, { useState } from 'react';
 import InputMask from 'react-input-mask';
 
+
 const Form: React.FC = () => {
   const [formData, setFormData] = useState({
     nomeCompleto: '',
     cpf: '',
     dataNascimento: '',
     telefoneWhatsapp: '',
-    possuiHabilitacao: '', // SIM ou NÃO
-    comoConquistar: '', // Opções de financiamento ou à vista
+    possuiHabilitacao: '', 
+    comoConquistar: '',
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -20,11 +21,34 @@ const Form: React.FC = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Lógica de envio do formulário
-    console.log(formData);
+  
+    const apiEndpoint = '/api/send';
+  
+    try {
+      const response = await fetch(apiEndpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        // Ajuste para enviar apenas o campo necessário
+        body: JSON.stringify({ firstName: formData.nomeCompleto }),
+      });
+  
+      if (!response.ok) {
+        throw new Error('Falha ao enviar o formulário');
+      }
+  
+      const data = await response.json();
+      console.log(data);
+      alert('Formulário enviado com sucesso!');
+    } catch (error) {
+      console.error('Erro ao enviar o formulário:', error);
+      alert('Erro ao enviar o formulário.');
+    }
   };
+  
 
   return (
     <div id='form' className='px-4 mb-12 flex flex-col items-center'>
