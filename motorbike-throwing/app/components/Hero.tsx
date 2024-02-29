@@ -14,7 +14,7 @@ const Hero: React.FC = () => {
             height={1080}
             />
       </div>
-        <a href="" className="text-center text-white text-lg font-bold w-6/12 bg-green-500 rounded-md p-2 shadow-md shadow-green-200">Fale Conosco!</a>
+        <a href="#form" className="text-center text-white text-lg font-bold w-6/12 bg-green-700 rounded-md p-2 shadow-lg shadow-green-400">Fale Conosco!</a>
       
     </div>
    
