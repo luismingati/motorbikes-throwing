@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from 'react';
 import InputMask from 'react-input-mask';
+import { sendEmail } from '../sendEmail';
 
 
 const Form: React.FC = () => {
@@ -20,40 +21,11 @@ const Form: React.FC = () => {
       [name]: value
     }));
   };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
   
-    const apiEndpoint = '/api/send';
-  
-    try {
-      const response = await fetch(apiEndpoint, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        // Ajuste para enviar apenas o campo necessário
-        body: JSON.stringify({ firstName: formData.nomeCompleto }),
-      });
-  
-      if (!response.ok) {
-        throw new Error('Falha ao enviar o formulário');
-      }
-  
-      const data = await response.json();
-      console.log(data);
-      alert('Formulário enviado com sucesso!');
-    } catch (error) {
-      console.error('Erro ao enviar o formulário:', error);
-      alert('Erro ao enviar o formulário.');
-    }
-  };
-  
-
   return (
     <div id='form' className='px-4 mb-12 flex flex-col items-center'>
       <h2 className='text-2xl mb-3 text-center'>Preencha o formulario, para que possamos entrar em contato!</h2>
-      <form onSubmit={handleSubmit} className="md:max-w-md lg:max-w-lg bg-white p-4 rounded-lg shadow-lg">
+      <form action={async formData => {await sendEmail(formData)}} className="md:max-w-md lg:max-w-lg bg-white p-4 rounded-lg shadow-lg">
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="nomeCompleto">
             Nome Completo*
