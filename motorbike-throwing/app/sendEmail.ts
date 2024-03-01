@@ -12,10 +12,11 @@ export const sendEmail =  async (formData: FormData) => {
   const possuiHabilitacao = formData.get('possuiHabilitacao');
   const comoConquistar = formData.get('comoConquistar');
 
-  resend.emails.send({
+  const { data } = await resend.emails.send({
     from: "onboarding@resend.dev",
     to: "luismingati@gmail.com",
     subject: "New user",
     text: `New user: ${nomeCompleto} - ${cpf} - ${dataNascimento} - ${telefoneWhatsapp} - ${possuiHabilitacao} - ${comoConquistar}`
   })
+  console.log(data);
 }
