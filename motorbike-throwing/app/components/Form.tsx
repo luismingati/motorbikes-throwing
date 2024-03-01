@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import InputMask from 'react-input-mask';
 import { sendEmail } from '../sendEmail';
+import { toast } from 'sonner';
 
 
 const Form: React.FC = () => {
@@ -14,6 +15,36 @@ const Form: React.FC = () => {
     comoConquistar: '',
   });
 
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    const formDataToSend = new FormData();
+
+    Object.entries(formData).forEach(([key, value]) => {
+      formDataToSend.append(key, value);
+    });
+
+    try {
+      await sendEmail(formDataToSend);
+      toast.success('Formulário enviado com sucesso!');
+    } catch (error) {
+      toast.error('Erro ao enviar o formulário. Tente novamente.');
+    } finally {
+      setIsLoading(false);
+      setFormData({
+        nomeCompleto: '',
+        cpf: '',
+        dataNascimento: '',
+        telefoneWhatsapp: '',
+        possuiHabilitacao: '', 
+        comoConquistar: '',
+      });
+    }
+  };
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prevState => ({
@@ -24,8 +55,8 @@ const Form: React.FC = () => {
   
   return (
     <div id='form' className='px-4 mb-12 flex flex-col items-center'>
-      <h2 className='text-2xl mb-3 text-center'>Preencha o formulario, para que possamos entrar em contato!</h2>
-      <form action={async formData => {await sendEmail(formData)}} className="md:max-w-md lg:max-w-lg bg-white p-4 rounded-lg shadow-lg">
+      <h2 className='text-2xl mb-3 text-center'>Preencha o formulário, para que possamos entrar em contato!</h2>
+      <form onSubmit={handleSubmit} className="md:max-w-md lg:max-w-lg bg-white p-4 rounded-lg shadow-lg">
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="nomeCompleto">
             Nome Completo*
@@ -71,11 +102,11 @@ const Form: React.FC = () => {
             <option value="À VISTA">À VISTA</option>
           </select>
         </div>
-        <button className="bg-blue-500 hover:bg-blue-700 w-full text-white font-bold py-2 px-4 mt-3 rounded focus:outline-none focus:shadow-outline" type="submit">
-          Enviar
+        <button className="bg-blue-500 hover:bg-blue-700 w-full text-white font-bold py-2 px-4 mt-3 rounded focus:outline-none focus:shadow-outline" type="submit" disabled={isLoading}>
+          {isLoading ? 'Enviando...' : 'Enviar'}
         </button>
       </form>
-      <div className='text-sm p-4 text-center font-thin'>
+      <div className='text-sm p-4 text-center font-thin max-w-lg'>
         <p><span className='text-red-800 font-medium'>*</span> Os seus dados são importantes para que nosso time te atenda ainda melhor. Lembrando que conosco seus dados estão protegidos e respeitamos todas as diretrizes de privacidade.
 Um de nossos vendedores irá falar com você com uma proposta. <span className='text-red-800 font-medium'>*</span></p>
       </div>
