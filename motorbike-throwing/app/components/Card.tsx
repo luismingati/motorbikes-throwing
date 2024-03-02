@@ -38,7 +38,7 @@ const Card: React.FC = () => {
       <p className='text-6xl'>🤑</p>
     </div>
     <div className='flex flex-col gap-2'>
-      <p className='text-lg'>Valor de apenas <span className='text-xl font-bold text-green-600'>R$15.490,00</span>!</p>
+      <p className='text-lg'>Valor de apenas <span className='text-xl font-bold text-green-600'>R$15.990,00</span>!</p>
       <p>Financiamos em até 48x sem entrada!</p>
       <div>
         <h3>Disponível nas cores:</h3>
